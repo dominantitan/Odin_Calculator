@@ -1,0 +1,28 @@
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+}
+
+
+
+#cover{
+    background-color: #1E1E1E;
+    border : solid black 2px;
+    width: 300px;
+    height: 97vh;
+    border-radius: 20px;
+}
+
+#display{
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 25px;
+    text-align: right;
+    height: 20vh;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+}
