@@ -37,20 +37,26 @@ body{
 }
 
 .topButtons{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 10px;
 }
 
 .numButtons{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     flex: 1;
 }
 
-.topButtons button,
+.topButtons button{
+    flex: 1;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
 .numButtons button {
+    flex: 1 1 20%;
     padding: 10px 20px;
     box-sizing: border-box;
     border-radius: 10px;
