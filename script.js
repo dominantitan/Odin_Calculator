@@ -1,6 +1,5 @@
 let number1 = "";
 let number2 = "";
-let tempNum1;
 let operator = "";
 let numbers = "1234567890";
 let operators = "+-*/";
@@ -10,40 +9,6 @@ let evaluate = "=";
 
 const primaryDisplay = document.querySelector("#displayText");
 const secDisplay = document.querySelector("#secondaryDisplay");
-
-// const buttons = document.querySelectorAll("button");
-
-// buttons.forEach((button) => {
-//   button.addEventListener("click", (event) => {
-//     if (number1 === undefined) {
-//       if (numbers.includes(event.target.id)) {
-//         number1 = +event.target.id;
-//         console.log(number1);
-//       }else if(operators.includes(event.target.id)){
-//         operator = event.target.id;
-//         console.log(operator);
-//       }else if(event.target.id = evaluate){
-//         number1 = operate(tempNum1,number2,operator);
-//         console.log(number1);
-//       }
-//     }else {
-//         if (numbers.includes(event.target.id)) {
-//         number2 = +event.target.id;
-//         tempNum1 = number1;
-//         number1 = undefined;
-//         console.log(number2);
-//       }else if(operators.includes(event.target.id)){
-//         operator = event.target.id;
-//         console.log(operator);
-//       }else if(event.target.id === evaluate){
-//         number1 = operate(tempNum1,number2,operator);
-//         console.log(number1);
-//       }
-//     }
-//   });
-// });
-
-
 
 function buttonClicked(){
     const buttons = document.querySelectorAll("button");
@@ -75,10 +40,20 @@ function buttonClicked(){
           overwriteDisplay(result);
           console.log(result);
           operatorAppeared = false;
-          isStore = false;
+          isStored = false;
+          number1 = result.toString();
+          number2 = "";
         }
       })
     })
+}
+
+function clear(){
+    number1 = "";
+    number2 = "";
+    operator = "";
+    operatorAppeared = false;
+    isStored = false;
 }
 
 function isNumber(char){
