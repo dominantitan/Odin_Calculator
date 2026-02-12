@@ -43,6 +43,9 @@ function buttonClicked(){
           isStored = false;
           number1 = result.toString();
           number2 = "";
+        }else if(event.target.id === "clr"){
+          console.log("clear button clicked")
+          clear();
         }
       })
     })
@@ -54,7 +57,11 @@ function clear(){
     operator = "";
     operatorAppeared = false;
     isStored = false;
+    secDisplay.textContent = "";
+    overwriteDisplay("0");
 }
+
+
 
 function isNumber(char){
   return numbers.includes(char);
