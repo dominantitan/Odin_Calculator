@@ -17,9 +17,18 @@ body{
     padding: 20px;
 }
 
-p{
+#displayText{
     display:flex;
-    margin: 10px
+    margin: 0;
+}
+
+#secondaryDisplay{
+    display: flex;
+    align-self:flex-end;
+    justify-self: flex-end;
+    margin:0;
+    font-size: 20px;
+
 }
 
 #display{
@@ -29,12 +38,12 @@ p{
     color: white;
     font-family: 'Courier New', Courier, monospace;
     font-size: 32px;
-    text-align: right;
     padding: 20px;
     box-sizing: border-box;
     display:flex;
     justify-content: flex-end;
     align-items: flex-end;
+    flex-direction: column;
 }
 
 .Buttons{
