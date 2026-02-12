@@ -6,6 +6,7 @@ let operators = "+-*/";
 let operatorAppeared = false;
 let isStored = false;
 let evaluate = "=";
+let lastThing = "";
 
 const primaryDisplay = document.querySelector("#displayText");
 const secDisplay = document.querySelector("#secondaryDisplay");
@@ -15,9 +16,14 @@ function buttonClicked(){
 
     buttons.forEach((button) =>{
       button.addEventListener("click",(event) =>{
+        if(event.target.id === "clr"){
+          console.log("clear button clicked")
+          clear();
+        }
+
         if(isNumber(event.target.id) && operatorAppeared === false){
           number1 += event.target.id;
-          console.log(number1);
+          console.log("num1 : " + number1);
           overwriteDisplay(number1);
         }else if(isOperator(event.target.id) && operatorAppeared === false){
           operator = event.target.id;
@@ -32,7 +38,7 @@ function buttonClicked(){
           isStored = true;
           }
           overwriteDisplay(number2);
-          console.log(number2);
+          console.log("num2 : " +number2);
         }else if(isCharEquals(event.target.id) && operatorAppeared === true){
           number1 = +number1;
           number2 = +number2;
@@ -43,9 +49,9 @@ function buttonClicked(){
           isStored = false;
           number1 = result.toString();
           number2 = "";
-        }else if(event.target.id === "clr"){
-          console.log("clear button clicked")
-          clear();
+        }else if(event.target.id === "del"){
+          console.log("delete button clicked");
+          del();
         }
       })
     })
@@ -61,7 +67,27 @@ function clear(){
     overwriteDisplay("0");
 }
 
+function del(){
+  const originalString = primaryDisplay.textContent;
+  const removed = originalString.slice(-1);
+  const newString = originalString.slice(0, -1);
+  if(isOperator(removed)){
+    operator = "";
+  }else if(isNumber(removed) && operatorAppeared === false){
+    number1 = newString;
+  }else if(isNumber(removed) && operatorAppeared === true){
+    number2 = newString;
+  }
+  if(newString !== ""){
+    overwriteDisplay(newString);
+  }else{
+    overwriteDisplay("0");
+  }
+  console.log(`${removed} was deleted`)
+  console.log("num1 : " + number1);
+  console.log("num2 : " + number2);
 
+}
 
 function isNumber(char){
   return numbers.includes(char);
