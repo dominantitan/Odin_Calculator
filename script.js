@@ -12,10 +12,13 @@ const primaryDisplay = document.querySelector("#displayText");
 const secDisplay = document.querySelector("#secondaryDisplay");
 
 function buttonClicked(){
+
     const buttons = document.querySelectorAll("button");
 
     buttons.forEach((button) =>{
       button.addEventListener("click",(event) =>{
+        console.log("operatorAppeared: " + operatorAppeared);
+
         if(event.target.id === "clr"){
           console.log("clear button clicked")
           clear();
@@ -30,6 +33,22 @@ function buttonClicked(){
           updateDisplay(operator);
           console.log(operator);
           operatorAppeared = true;
+
+        }else if(isOperator(event.target.id) && operatorAppeared === true){//for chaining if another operator is pressed after any expression
+          number1 = +number1;
+          number2 = +number2;
+          let result = operate(number1, number2, operator);
+          
+          // Set up for next operation
+          number1 = result.toString();
+          number2 = "";
+          operator = event.target.id;
+          
+          // Update displays
+          secDisplay.textContent = result + operator;
+          overwriteDisplay(result);
+          
+          console.log("Chained result: " + result);
         }else if(isNumber(event.target.id) && operatorAppeared === true){
           number2 += event.target.id;
           if(isStored === false){
@@ -86,8 +105,18 @@ function del(){
   console.log(`${removed} was deleted`)
   console.log("num1 : " + number1);
   console.log("num2 : " + number2);
-
 }
+
+// function isInPrimaryDisplay(string){
+//   let displayText = primaryDisplay.textContent;
+//   string.forEach((char) => {
+//     if(displayText.includes(char)){
+//       return true;
+//     }else {
+//       return false;
+//     }
+//   });
+// }
 
 function isNumber(char){
   return numbers.includes(char);
@@ -144,6 +173,14 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if(b === 0){
+    alert("Math Error");
+    clear();
+    return;
+  }if(a%b !== 0){
+    let quotient = a/b;
+    return Math.round(quotient* 100)/100;
+  }
   return a / b;
 }
 
